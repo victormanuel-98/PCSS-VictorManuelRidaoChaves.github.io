@@ -217,7 +217,6 @@ canvas#bg-canvas {
     mask: url("public/images/tetra-logo.png") center/contain no-repeat;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
-  mask: url("/images/tetra-logo.png") center/contain no-repeat;
   -webkit-filter: drop-shadow(0 0 18px rgba(92, 255, 157, 0.6));
   filter: drop-shadow(0 0 18px rgba(92, 255, 157, 0.6));
   transform-origin: 50% 50%;
