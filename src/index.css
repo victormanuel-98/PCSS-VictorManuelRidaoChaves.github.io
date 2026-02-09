@@ -281,8 +281,7 @@ p + p {
 .page {
   position: relative;
   z-index: 3;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
 }
 
 .rail {
@@ -332,10 +331,11 @@ p + p {
   position: fixed;
   left: 50%;
   bottom: 2.6rem;
-  transform: translate(-50%, calc(100% + 1rem));
+  /* hide nav by translating down relative to its own size to avoid overlap when it wraps */
+  transform: translate(-50%, 120%);
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* avoid vertical growth */
   justify-content: center;
   align-items: center;
   gap: 0.6rem;
@@ -349,6 +349,9 @@ p + p {
   transition: transform 0.3s ease, opacity 0.3s ease;
   opacity: 0;
   pointer-events: none;
+  max-width: calc(100% - 40px);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .side-nav.is-open {
@@ -388,9 +391,10 @@ p + p {
 .side-nav__list {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* keep items in a single row, allow horizontal scroll */
   justify-content: center;
   gap: 0.6rem;
+  white-space: nowrap;
 }
 
 .side-nav__item {
@@ -461,9 +465,11 @@ p + p {
 .section {
   padding: clamp(3.5rem, 8vw, 7rem) clamp(1.5rem, 8vw, 7rem);
   min-height: 100vh;
-  height: 100vh;
-  width: 100vw;
-  flex: 0 0 100vw;
+  /* Allow sections to grow naturally and avoid forcing fixed viewport height which
+     can cause overlap with fixed nav and content overflow on some devices. */
+  height: auto;
+  width: 100%;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   scroll-margin-top: 120px;
@@ -498,7 +504,8 @@ p + p {
   margin: 0 auto;
   display: grid;
   gap: 2.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  /* default responsive grid (mobile-first): allow columns down to 220px */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   align-items: start;
 }
 
@@ -750,8 +757,6 @@ p + p {
   gap: 0.8rem;
   cursor: pointer;
   transition: transform 0.2s ease, border 0.2s ease;
-  max-width: 400px;
-  min-width: 280px;
   width: 100%;
 }
 
@@ -941,11 +946,24 @@ p + p {
   .nav-toggle {
     bottom: 0.8rem;
   }
+  /* On large screens allow wider card columns */
+  .section__content {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+  .project-card {
+    max-width: 420px;
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 700px) {
   .hero__cta {
     flex-direction: column;
     align-items: flex-start;
+  }
+  /* On small screens allow nav to wrap/stack vertically */
+  .side-nav {
+    flex-wrap: wrap;
+    padding: 0.5rem 0.6rem;
   }
 }
