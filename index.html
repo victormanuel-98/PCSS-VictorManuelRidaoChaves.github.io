@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Víctor Ridao | Full Stack Developer</title>
+  <meta name="description" content="Portfolio moderno en HTML, CSS y JavaScript" />
+  <link rel="icon" type="image/png" href="/images/tetra-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&family=Space+Grotesk:wght@300..700&family=IBM+Plex+Mono:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/src/index.css" />
+</head>
+
+<body data-theme="dark">
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div class="crt-noise" aria-hidden="true"></div>
+  <div class="crt-scanlines" aria-hidden="true"></div>
+  <div class="hud-frame" aria-hidden="true"></div>
+  <div class="boot-screen" role="status" aria-live="polite">
+    <div class="boot-screen__inner">
+      <div class="boot-logo" aria-hidden="true"></div>
+      <p class="boot-screen__label">SYSTEM LINK ONLINE</p>
+      <div class="boot-screen__bar">
+        <span></span>
+      </div>
+      <p class="boot-screen__hint">Click to enter</p>
+    </div>
+  </div>
+
+  <button class="nav-toggle is-open" type="button" data-nav-toggle aria-expanded="true" aria-controls="primary-nav">
+    &#9650;
+  </button>
+  <aside class="side-nav is-open" aria-label="Section navigation">
+    <nav class="side-nav__list" id="primary-nav">
+      <button class="side-nav__item" data-target="home" aria-label="Home">
+        <span class="side-nav__dot"></span>
+        <span class="side-nav__label" data-i18n="nav.home">Inicio</span>
+      </button>
+      <button class="side-nav__item" data-target="about" aria-label="About">
+        <span class="side-nav__dot"></span>
+        <span class="side-nav__label" data-i18n="nav.about">Sobre Mi</span>
+      </button>
+      <button class="side-nav__item" data-target="experience" aria-label="Experience">
+        <span class="side-nav__dot"></span>
+        <span class="side-nav__label" data-i18n="nav.experience">Experiencia</span>
+      </button>
+      <button class="side-nav__item" data-target="skills" aria-label="Skills">
+        <span class="side-nav__dot"></span>
+        <span class="side-nav__label" data-i18n="nav.skills">Soft Skills</span>
+      </button>
+      <button class="side-nav__item" data-target="languages" aria-label="Languages">
+        <span class="side-nav__dot"></span>
+        <span class="side-nav__label" data-i18n="nav.languages">Idiomas</span>
+      </button>
+      <button class="side-nav__item" data-target="projects" aria-label="Projects">
+        <span class="side-nav__dot"></span>
+        <span class="side-nav__label" data-i18n="nav.projects">Proyectos</span>
+      </button>
+      <button class="side-nav__item" data-target="contact" aria-label="Contact">
+        <span class="side-nav__dot"></span>
+        <span class="side-nav__label" data-i18n="nav.contact">Contacto</span>
+      </button>
+      <span class="side-nav__divider" aria-hidden="true"></span>
+      <button class="nav-action" id="language-toggle" type="button" aria-label="Change language">
+        <span class="mono">ES</span>
+      </button>
+      <button class="nav-action" id="theme-toggle" type="button" aria-label="Toggle theme">
+        <span class="mono" data-i18n="theme.label">Dark</span>
+      </button>
+    </nav>
+  </aside>
+
+  <main class="page">
+    <div class="rail" id="section-rail">
+      <section id="home" class="section hero" data-section data-reveal>
+        <div class="section__content">
+          <div class="hero__intro">
+            <h1 data-i18n="home.title">Desarrollador Full Stack</h1>
+            <p class="lead" data-i18n="home.description">
+              Full Stack graduado en DAW. Especializado en experiencias digitales modernas y funcionales.
+            </p>
+            <div class="hero__cta">
+              <a class="primary-button" href="#projects" data-i18n="home.cta">Ver proyectos</a>
+              <a class="ghost-button" href="#contact" data-i18n="home.ctaAlt">Contactar</a>
+            </div>
+          </div>
+          <div class="hero__grid" aria-label="Skills overview">
+            <div class="stat-card">
+              <p class="stat-title" data-i18n="home.frontend">Frontend</p>
+              <p class="stat-desc" data-i18n="home.frontend.desc">HTML5 · CSS3 · React · Figma</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-title" data-i18n="home.backend">Backend</p>
+              <p class="stat-desc" data-i18n="home.backend.desc">Java · JavaScript · Node.js · MongoDB</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-title" data-i18n="home.databases">Databases</p>
+              <p class="stat-desc" data-i18n="home.databases.desc">MongoDB · PostgreSQL</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-title" data-i18n="home.fullstack">Full Stack</p>
+              <p class="stat-desc" data-i18n="home.fullstack.desc">React · Node.js · Java · Docker</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section" data-section data-reveal>
+        <div class="section__content two-col">
+          <div>
+            <p class="eyebrow" data-i18n="about.subtitle">Sobre Mi</p>
+            <h2 data-i18n="about.title">Sobre Mi</h2>
+            <p data-i18n="about.p1">
+              Desarrollador Full Stack graduado en Desarrollo de Aplicaciones Web (DAW).
+              Especializado en crear experiencias digitales modernas y funcionales.
+            </p>
+            <p data-i18n="about.p2">
+              Dominio completo de tecnologias frontend (React, Vue, TypeScript) y backend (Node.js, Express,
+              bases de datos). Enfocado en codigo limpio, arquitecturas escalables e interfaces intuitivas.
+            </p>
+            <p data-i18n="about.p3">
+              Experiencia desarrollando proyectos de e-commerce, APIs RESTful, dashboards de análisis y
+              sistemas de gestión empresarial.
+            </p>
+          </div>
+          <div class="about-aside">
+            <div class="profile-card">
+              <img class="profile-image" src="/images/profile.jpeg" alt="Foto de perfil" loading="lazy" />
+            </div>
+            <div class="stack-panel">
+              <p class="panel-title" data-i18n="about.stack">Stack Tecnológico</p>
+              <div class="pill-group">
+                <span class="pill">React</span>
+                <span class="pill">JavaScript</span>
+                <span class="pill">Node.js</span>
+                <span class="pill">Express</span>
+                <span class="pill">Java</span>
+                <span class="pill">MongoDB</span>
+                <span class="pill">Docker</span>
+                <span class="pill">Vercel</span>
+                <span class="pill">Render</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="section" data-section data-reveal>
+        <div class="section__content">
+          <div class="section__header">
+            <p class="eyebrow" data-i18n="experience.subtitle">Trayectoria profesional y formativa</p>
+            <h2 data-i18n="experience.title">Experiencia</h2>
+          </div>
+          <div class="timeline">
+            <article class="timeline-card">
+              <div>
+                <h3 data-i18n="experience.job1.title">Prácticas DAW</h3>
+                <p class="muted" data-i18n="experience.job1.company">Instituto Tecnológico Superior ADA</p>
+              </div>
+              <span class="tag" data-i18n="experience.job1.period">2024 - Actualidad</span>
+              <p data-i18n="experience.job1.desc">
+                Desarrollo de proyectos web durante el ciclo formativo. Trabajo en equipo y metodologias agiles.
+              </p>
+              <div class="pill-group">
+                <span class="pill">React</span>
+                <span class="pill">Liferay</span>
+                <span class="pill">Azure</span>
+                <span class="pill">Docker</span>
+              </div>
+            </article>
+            <article class="timeline-card">
+              <div>
+                <h3 data-i18n="experience.job2.title">Desarrollador Frontend</h3>
+                <p class="muted" data-i18n="experience.job2.company">Startup Digital</p>
+              </div>
+              <span class="tag" data-i18n="experience.job2.period">2024 - Actualidad</span>
+              <p data-i18n="experience.job2.desc">
+                Creacion de interfaces de usuario modernas y responsive. Optimizacion de rendimiento y
+                experiencia de usuario.
+              </p>
+              <div class="pill-group">
+                <span class="pill">HTML5</span>
+                <span class="pill">CSS3</span>
+                <span class="pill">Figma</span>
+
+              </div>
+            </article>
+            <article class="timeline-card">
+              <div>
+                <h3 data-i18n="experience.job3.title">Prácticas DAW</h3>
+                <p class="muted" data-i18n="experience.job3.company">Agencia Web</p>
+              </div>
+              <span class="tag" data-i18n="experience.job3.period">2024 - Actualidad</span>
+              <p data-i18n="experience.job3.desc">
+                Desarrollo de proyectos web durante el ciclo formativo. Trabajo en equipo y metodologías
+                ágiles.
+              </p>
+              <div class="pill-group">
+                <span class="pill">Node</span>
+                <span class="pill">MongoDB</span>
+                <span class="pill">JavaScript</span>
+                <span class="pill">Java</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section" data-section data-reveal>
+        <div class="section__content">
+          <div class="section__header">
+            <p class="eyebrow" data-i18n="skills.subtitle">Habilidades interpersonales y de gestión</p>
+            <h2 data-i18n="skills.title">Soft Skills</h2>
+          </div>
+          <div class="grid-4">
+            <div class="soft-skill" data-i18n="skills.teamwork">Trabajo en Equipo</div>
+            <div class="soft-skill" data-i18n="skills.problemSolving">Resolución de Problemas</div>
+            <div class="soft-skill" data-i18n="skills.communication">Comunicación Efectiva</div>
+            <div class="soft-skill" data-i18n="skills.adaptability">Adaptabilidad</div>
+            <div class="soft-skill" data-i18n="skills.criticalThinking">Pensamiento Critico</div>
+            <div class="soft-skill" data-i18n="skills.timeManagement">Gestión del Tiempo</div>
+            <div class="soft-skill" data-i18n="skills.creativity">Creatividad</div>
+            <div class="soft-skill" data-i18n="skills.leadership">Liderazgo</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="languages" class="section" data-section data-reveal>
+        <div class="section__content">
+          <div class="section__header">
+            <p class="eyebrow" data-i18n="languages.subtitle">Competencias lingüísticas</p>
+            <h2 data-i18n="languages.title">Idiomas</h2>
+          </div>
+          <div class="language-list">
+            <div class="language-item">
+              <div class="language-row">
+                <span data-i18n="languages.spanish">Español</span>
+                <span class="tag" data-i18n="languages.native">Nativo</span>
+              </div>
+            </div>
+            <div class="language-item">
+              <div class="language-row">
+                <span data-i18n="languages.english">Inglés</span>
+                <span class="tag" data-i18n="languages.advanced">Avanzado</span>
+              </div>
+            </div>
+            <div class="language-item">
+              <div class="language-row">
+                <span data-i18n="languages.french">Francés</span>
+                <span class="tag" data-i18n="languages.basic">Básico</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section" data-section data-reveal>
+        <div class="section__content">
+          <div class="section__header">
+            <p class="eyebrow" data-i18n="projects.subtitle">Seleccion de trabajos realizados</p>
+            <h2 data-i18n="projects.title">Proyectos Destacados</h2>
+          </div>
+          <div id="projects-grid" class="grid-3"></div>
+        </div>
+      </section>
+
+      <section id="contact" class="section" data-section data-reveal>
+        <div class="section__content">
+          <div class="section__header">
+            <p class="eyebrow" data-i18n="contact.subtitle">Tienes un proyecto en mente? Hablemos</p>
+            <h2 data-i18n="contact.title">Contacto</h2>
+          </div>
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="field">
+              <label for="name" data-i18n="contact.name">Nombre</label>
+              <input id="name" name="name" type="text" required data-i18n-placeholder="contact.name" />
+              <p class="field-error" data-error="name"></p>
+            </div>
+            <div class="field">
+              <label for="email" data-i18n="contact.email">Email</label>
+              <input id="email" name="email" type="email" required data-i18n-placeholder="contact.email" />
+              <p class="field-error" data-error="email"></p>
+            </div>
+            <div class="field">
+              <label for="content" data-i18n="contact.message">Mensaje</label>
+              <textarea id="content" name="content" rows="5" required
+                data-i18n-placeholder="contact.message"></textarea>
+              <p class="field-error" data-error="content"></p>
+            </div>
+            <button class="primary-button" type="submit" data-i18n="contact.send">Enviar Mensaje</button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal__overlay" data-close-modal></div>
+    <div class="modal__content" role="document">
+      <button class="modal__close" type="button" data-close-modal aria-label="Close">
+        &#10005;
+      </button>
+      <div class="modal__body">
+        <p class="eyebrow" data-modal="subtitle">Project</p>
+        <h3 data-modal="title">Title</h3>
+        <p data-modal="description">Description</p>
+        <div class="pill-group" data-modal="tags"></div>
+        <div class="modal__actions">
+          <a class="primary-button" data-modal="link" data-i18n="projects.viewProject" target="_blank"
+            rel="noreferrer">Ver proyecto</a>
+          <a class="ghost-button" data-modal="code" data-i18n="projects.viewCode" target="_blank" rel="noreferrer">Ver
+            codigo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
