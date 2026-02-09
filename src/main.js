@@ -14,13 +14,22 @@ const translations = {
     es: {
         "theme.dark": "Oscuro",
         "theme.light": "Claro",
+        "theme.ariaToLight": "Activar modo claro",
+        "theme.ariaToDark": "Activar modo oscuro",
         "nav.home": "Inicio",
+        "nav.home.tooltip": "Página principal",
         "nav.about": "Sobre Mi",
+        "nav.about.tooltip": "Presentación y perfil",
         "nav.experience": "Experiencia",
+        "nav.experience.tooltip": "Trayectoria profesional",
         "nav.skills": "Soft Skills",
+        "nav.skills.tooltip": "Habilidades personales",
         "nav.languages": "Idiomas",
+        "nav.languages.tooltip": "Competencias lingüísticas",
         "nav.projects": "Proyectos",
+        "nav.projects.tooltip": "Trabajos realizados",
         "nav.contact": "Contacto",
+        "nav.contact.tooltip": "Formulario de contacto",
         "home.title": "Desarrollador Full Stack",
         "home.description":
             "Full Stack graduado en DAW. Especializado en experiencias digitales modernas y funcionales.",
@@ -96,13 +105,22 @@ const translations = {
     en: {
         "theme.dark": "Dark",
         "theme.light": "Light",
+        "theme.ariaToLight": "Switch to light mode",
+        "theme.ariaToDark": "Switch to dark mode",
         "nav.home": "Home",
-        "nav.about": "Víctor Manuel Ridao Chaves",
+        "nav.home.tooltip": "Main page",
+        "nav.about": "About Me",
+        "nav.about.tooltip": "Profile and introduction",
         "nav.experience": "Experience",
+        "nav.experience.tooltip": "Professional journey",
         "nav.skills": "Soft Skills",
+        "nav.skills.tooltip": "Personal skills",
         "nav.languages": "Languages",
+        "nav.languages.tooltip": "Language skills",
         "nav.projects": "Projects",
+        "nav.projects.tooltip": "Featured work",
         "nav.contact": "Contact",
+        "nav.contact.tooltip": "Contact form",
         "home.title": "Full Stack Developer",
         "home.description":
             "Full Stack DAW graduate. Focused on modern, functional digital experiences.",
@@ -254,15 +272,12 @@ function applyTranslations() {
         if (!key || !dict[key]) return;
         el.setAttribute("placeholder", dict[key]);
     });
-    if (languageToggle) {
-        languageToggle.querySelector(".mono").textContent = currentLanguage.toUpperCase();
-    }
+    const languageLabel = document.getElementById("language-label");
+    if (languageLabel) languageLabel.textContent = currentLanguage.toUpperCase();
     if (themeToggle) {
-        const label = themeToggle.querySelector("[data-i18n='theme.label']");
-        if (label) {
-            const key = currentTheme === "dark" ? "theme.dark" : "theme.light";
-            label.textContent = dict[key] || label.textContent;
-        }
+        const dict = translations[currentLanguage] || translations.es;
+        const isDark = body.getAttribute("data-theme") === "dark";
+        themeToggle.setAttribute("aria-label", isDark ? (dict["theme.ariaToLight"] || "Activar modo claro") : (dict["theme.ariaToDark"] || "Activar modo oscuro"));
     }
 
     if (projectCache.length) {
@@ -273,11 +288,9 @@ function applyTranslations() {
 function applyTheme() {
     body.setAttribute("data-theme", currentTheme);
     if (themeToggle) {
-        const label = themeToggle.querySelector("[data-i18n='theme.label']");
-        if (label) {
-            const key = currentTheme === "dark" ? "theme.dark" : "theme.light";
-            label.textContent = (translations[currentLanguage] || translations.es)[key] || label.textContent;
-        }
+        const dict = translations[currentLanguage] || translations.es;
+        const isDark = currentTheme === "dark";
+        themeToggle.setAttribute("aria-label", isDark ? (dict["theme.ariaToLight"] || "Activar modo claro") : (dict["theme.ariaToDark"] || "Activar modo oscuro"));
     }
 }
 
@@ -293,14 +306,46 @@ function toggleTheme() {
     applyTheme();
 }
 
+const NAV_MOBILE_BREAKPOINT = 768;
+
+function isNavMobile() {
+    return window.innerWidth <= NAV_MOBILE_BREAKPOINT;
+}
+
+function setNavOpen(open) {
+    if (!sideNav || !navToggle) return;
+    if (open) {
+        sideNav.classList.add("is-open");
+        navToggle.classList.add("is-open");
+        navToggle.setAttribute("aria-expanded", "true");
+        if (isNavMobile()) body.classList.add("nav-overlay-open");
+    } else {
+        sideNav.classList.remove("is-open");
+        navToggle.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+        body.classList.remove("nav-overlay-open");
+    }
+}
+
 function initNavigation() {
     if (!rail) return;
 
     if (sideNav && navToggle) {
+        if (isNavMobile()) {
+            sideNav.classList.remove("is-open");
+            navToggle.classList.remove("is-open");
+            navToggle.setAttribute("aria-expanded", "false");
+        }
+
         navToggle.addEventListener("click", () => {
-            const isOpen = sideNav.classList.toggle("is-open");
-            navToggle.classList.toggle("is-open", isOpen);
-            navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            const willBeOpen = !sideNav.classList.contains("is-open");
+            setNavOpen(willBeOpen);
+        });
+
+        window.addEventListener("resize", () => {
+            if (!isNavMobile() && body.classList.contains("nav-overlay-open")) {
+                body.classList.remove("nav-overlay-open");
+            }
         });
     }
 
@@ -425,6 +470,7 @@ function initNavigation() {
             const index = baseIds.indexOf(target || "");
             if (index >= 0) {
                 navigateTo(index, 0);
+                if (isNavMobile()) setNavOpen(false);
             }
         });
     });
@@ -436,6 +482,7 @@ function initNavigation() {
             if (index >= 0) {
                 event.preventDefault();
                 navigateTo(index, 0);
+                if (isNavMobile()) setNavOpen(false);
             }
         });
     });
@@ -543,28 +590,26 @@ function renderProjects(projects) {
     if (!projectsGrid) return;
     projectsGrid.innerHTML = "";
 
+    const viewDetailsLabel = translations[currentLanguage]["projects.viewDetails"] || "Ver detalles";
+
     projects.forEach((project) => {
         const card = document.createElement("article");
-        card.className = "project-card";
+        card.className = "timeline-card project-card";
         const projectLink = typeof project.link === "string" ? project.link.trim() : "";
-        const description = project.description ? project.description.slice(0, 120) : "";
+        const description = project.description ? project.description.slice(0, 200) : "";
+
+        const tags = normalizeTags(project);
+        const pillsHtml = tags.slice(0, 4).map((tag) => `<span class="pill">${tag}</span>`).join("");
 
         card.innerHTML = `
-      <p class="eyebrow">${translations[currentLanguage]["projects.viewDetails"]}</p>
-      <h3 class="project-title">${project.title}</h3>
-      <p class="project-desc">${description}</p>
-            <div class="project-meta">
-                <div class="project-tags"></div>
-            </div>
-    `;
-        const tags = normalizeTags(project);
-        const tagsEl = card.querySelector(".project-tags");
-        tags.slice(0, 4).forEach((tag) => {
-            const span = document.createElement("span");
-            span.className = "pill";
-            span.textContent = tag;
-            tagsEl.appendChild(span);
-        });
+          <div>
+            <h3>${project.title}</h3>
+            <p class="muted">${currentLanguage === "es" ? "Proyecto" : "Project"}</p>
+          </div>
+          <span class="tag">${viewDetailsLabel}</span>
+          <p>${description}</p>
+          <div class="pill-group">${pillsHtml}</div>
+        `;
         card.addEventListener("click", () => {
             if (projectLink) {
                 window.open(projectLink, "_blank", "noopener");
