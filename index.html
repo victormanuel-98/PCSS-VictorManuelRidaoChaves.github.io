@@ -1,41 +1,68 @@
+<!-- Documento principal -->
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
   <title>Víctor Ridao | Full Stack Developer</title>
+
   <meta name="description" content="Portfolio moderno en HTML, CSS y JavaScript" />
+
+  <!-- Favicon -->
+
   <link rel="icon" type="image/png" href="/images/tetra-logo.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Fuentes principales -->
   <link
     href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&family=Space+Grotesk:wght@300..700&family=IBM+Plex+Mono:wght@400;600&display=swap"
     rel="stylesheet" />
+
   <link rel="stylesheet" href="/src/index.css" />
+
 </head>
 
+
 <body data-theme="dark">
+
   <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
   <div class="crt-noise" aria-hidden="true"></div>
   <div class="crt-scanlines" aria-hidden="true"></div>
+
+  <!-- Marco HUD -->
   <div class="hud-frame" aria-hidden="true"></div>
+
+
   <div class="boot-screen" role="status" aria-live="polite">
+
+
     <div class="boot-screen__inner">
       <div class="boot-logo" aria-hidden="true"></div>
+  
       <p class="boot-screen__label">SYSTEM LINK ONLINE</p>
+
       <div class="boot-screen__bar">
         <span></span>
       </div>
+
       <p class="boot-screen__hint">Click to enter</p>
+
     </div>
   </div>
 
   <button class="nav-toggle is-open" type="button" data-nav-toggle aria-expanded="true" aria-controls="primary-nav">
     &#9650;
   </button>
+
   <aside class="side-nav is-open" aria-label="Section navigation">
     <nav class="side-nav__list" id="primary-nav">
+
       <button class="side-nav__item" data-target="home" aria-label="Home">
         <span class="side-nav__dot"></span>
         <span class="side-nav__label" data-i18n="nav.home">Inicio</span>

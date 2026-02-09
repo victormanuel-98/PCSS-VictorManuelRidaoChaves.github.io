@@ -1,9 +1,12 @@
+/* Reset de estilos y box-sizing */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+
+/* Variables globales para fuentes, colores y efectos */
 :root {
   --font-sans: "Space Grotesk", "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", "Courier New", monospace;
@@ -15,6 +18,8 @@
   --glow: 0 0 18px rgba(92, 255, 157, 0.35);
 }
 
+
+/* Tema oscuro */
 body[data-theme="dark"] {
   --bg: #040908;
   --bg-soft: #0a1210;
@@ -27,6 +32,8 @@ body[data-theme="dark"] {
   --line: rgba(92, 255, 157, 0.16);
 }
 
+
+/* Tema claro */
 body[data-theme="light"] {
   --bg: #f7f6f0;
   --bg-soft: #dedbd0;
@@ -39,10 +46,14 @@ body[data-theme="light"] {
   --line: rgba(42, 192, 113, 0.18);
 }
 
+
+/* Fondo de acción en tema claro */
 body[data-theme="light"] .nav-action {
   background: var(--surface);
 }
 
+
+/* Estilos generales del body */
 body {
   min-height: 100vh;
   font-family: var(--font-sans);
@@ -55,6 +66,8 @@ body {
   line-height: 1.6;
 }
 
+
+/* Bloqueo de scroll durante la pantalla de arranque */
 body.boot-locked {
   overflow: hidden;
 }

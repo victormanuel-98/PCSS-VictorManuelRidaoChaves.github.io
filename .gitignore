@@ -1,0 +1,40 @@
+# Node/Vite
+node_modules/
+dist/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Misc
+*.tmp
+*.swp
+
+# Exclude test/build folders
+/build/
+/test/
+
+# Exclude old folders
+cv/
+src/
+
+# Exclude coverage
+coverage/
+
+# Exclude package lock
+package-lock.json
+yarn.lock
+
+# Exclude others
+*.bak
+*.old
