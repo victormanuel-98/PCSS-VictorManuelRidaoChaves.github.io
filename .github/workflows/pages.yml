@@ -34,16 +34,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build client
+      - name: Build site
         env:
           VITE_BASE: /${{ github.event.repository.name }}/
           VITE_API_BASE: ${{ vars.VITE_API_BASE }}
-        run: npm run build:client
+        run: npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: cv/dist/public
+          path: cv/dist
 
   deploy:
     needs: build
