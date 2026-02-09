@@ -24,9 +24,7 @@ Thumbs.db
 /build/
 /test/
 
-# Exclude old folders
 cv/
-src/
 
 # Exclude coverage
 coverage/

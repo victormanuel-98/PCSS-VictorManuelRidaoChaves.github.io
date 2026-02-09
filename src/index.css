@@ -213,8 +213,8 @@ canvas#bg-canvas {
   height: clamp(70px, 22vw, 110px);
   margin: 0 auto;
   background-color: var(--accent);
-  -webkit-mask: url("/images/tetra-logo.png") center/contain no-repeat;
-  -webkit-mask-size: contain;
+    -webkit-mask: url("images/tetra-logo.png") center/contain no-repeat;
+    mask: url("images/tetra-logo.png") center/contain no-repeat;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   mask: url("/images/tetra-logo.png") center/contain no-repeat;
