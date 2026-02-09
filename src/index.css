@@ -296,6 +296,9 @@ p + p {
   transform: translate(-50%, calc(100% + 1rem));
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: 0.6rem;
   padding: 0.75rem 1rem;
   border-radius: 999px;
@@ -346,8 +349,9 @@ p + p {
 .side-nav__list {
   display: flex;
   flex-direction: row;
-  gap: 0.6rem;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
 }
 
 .side-nav__item {
@@ -455,6 +459,8 @@ p + p {
   margin: 0 auto;
   display: grid;
   gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  align-items: start;
 }
 
 .section__header {
@@ -652,7 +658,7 @@ p + p {
 }
 
 .grid-3 {
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
 
 .soft-skill {
@@ -705,6 +711,9 @@ p + p {
   gap: 0.8rem;
   cursor: pointer;
   transition: transform 0.2s ease, border 0.2s ease;
+  max-width: 400px;
+  min-width: 280px;
+  width: 100%;
 }
 
 .project-card:hover {
