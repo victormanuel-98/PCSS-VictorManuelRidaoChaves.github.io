@@ -39,9 +39,9 @@ const translations = {
         "about.p1":
             "Desarrollador Full Stack graduado en Desarrollo de Aplicaciones Web (DAW). Especializado en crear experiencias digitales modernas y funcionales.",            
         "about.p2":
-            "Dominio completo de tecnologias frontend (HTML5, CSS3, React, TypeScript) y backend (Java, JavaScript y Node.js, MongoDB). Enfocado en codigo limpio, arquitecturas escalables e interfaces intuitivas.",
+            "Dominio completo de tecnologías frontend (HTML5, CSS3, React, TypeScript) y backend (Java, JavaScript y Node.js, MongoDB). Enfocado en código limpio, arquitecturas escalables e interfaces intuitivas.",
         "about.p3":
-            "Experiencia desarrollando proyectos de e-commerce, APIs RESTful, dashboards de analisis y sistemas de gestion empresarial.",
+            "Experiencia desarrollando proyectos de e-commerce, APIs RESTful, dashboards de análisis y sistemas de gestión empresarial.",
         "about.stack": "Stack Tecnológico",
         "experience.title": "Experiencia",
         "experience.subtitle": "Trayectoria profesional y formativa",
@@ -49,7 +49,7 @@ const translations = {
         "experience.job1.company": "Instituto Tecnológico Superior ADA",
         "experience.job1.period": "2024 - 2026",
         "experience.job1.desc":
-            "Desarrollo de proyectos web durante el ciclo formativo. Trabajo en equipo y metodologias agiles.",
+            "Desarrollo de proyectos web durante el ciclo formativo. Trabajo en equipo y metodologías ágiles.",
         "experience.job2.title": "Desarrollador Frontend",
         "experience.job2.company": "Startup Digital",
         "experience.job2.period": "2024 - Actualidad",

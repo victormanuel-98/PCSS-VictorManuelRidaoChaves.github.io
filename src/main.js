@@ -35,7 +35,7 @@ const translations = {
         "home.databases.desc": "MongoDB · PostgreSQL",
         "home.fullstack.desc": "React · Node.js · Java · Docker",
         "about.title": "Víctor Manuel Ridao Chaves",
-        "about.subtitle": "Sobre Mi",
+        "about.subtitle": "Sobre Mí",
         "about.p1":
             "Desarrollador Full Stack graduado en Desarrollo de Aplicaciones Web (DAW). Especializado en crear experiencias digitales modernas y funcionales.",            
         "about.p2":
@@ -117,7 +117,7 @@ const translations = {
         "home.databases.desc": "MongoDB · PostgreSQL",
         "home.fullstack.desc": "React · Node.js · Java · Docker",
         "about.title": "Víctor Manuel Ridao Chaves",
-        "about.subtitle": "Sobre Mi",
+        "about.subtitle": "About Me",
         "about.p1":
             "Full Stack Developer graduated in Web Application Development (DAW). Specialized in creating modern and functional digital experiences.",
         "about.p2":
